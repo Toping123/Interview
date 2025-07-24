@@ -1,14 +1,15 @@
 package stack.create
 
 /**
+ * 基于数组实现的栈
  * @author LTP  2025/7/23
  */
-class ArrayStack<T> : IStack<T> {
+class ArrayStack : IStack {
 
-    companion object{
+    companion object {
         @JvmStatic
         fun main(args: Array<String>) {
-            val stack = ArrayStack<Int>()
+            val stack = ArrayStack()
             stack.push(1)
             stack.push(2)
             stack.push(3)
@@ -19,7 +20,7 @@ class ArrayStack<T> : IStack<T> {
     }
 
     /** 使用动态数组来实现栈（mutableListOf本质上是一个动态数组） */
-    private val arrayStack = mutableListOf<T>()
+    private val arrayStack = mutableListOf<Int>()
 
     override fun size(): Int {
         return arrayStack.size
@@ -29,23 +30,19 @@ class ArrayStack<T> : IStack<T> {
         return size() == 0
     }
 
-    override fun push(t: T) {
+    override fun push(t: Int) {
         arrayStack.add(t)
     }
 
-    override fun pop(): T? {
+    override fun pop(): Int? {
         return if (isEmpty()) null else arrayStack.removeLast()
     }
 
-    override fun peek(): T? {
+    override fun peek(): Int? {
         return if (isEmpty()) null else arrayStack.last()
     }
 
-    override fun toArray(): Array<T> {
-        val array = arrayOfNulls<Any>(size()) as Array<T>
-        for (i in 0 until size()) {
-            array[i] = arrayStack[i]
-        }
-        return array
+    override fun toArray(): Array<Int> {
+        return arrayStack.toTypedArray()
     }
 }

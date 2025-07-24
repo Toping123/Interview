@@ -1,6 +1,6 @@
 package list;
 
-import list.base.ListNode;
+import base.ListNode;
 
 import java.util.HashSet;
 import java.util.Set;

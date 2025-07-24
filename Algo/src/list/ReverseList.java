@@ -1,6 +1,6 @@
 package list;
 
-import list.base.ListNode;
+import base.ListNode;
 
 /**
  * 反转链表

@@ -1,6 +1,6 @@
 package list;
 
-import list.base.ListNode;
+import base.ListNode;
 
 /**
  * 删除排序链表中的重复元素
@@ -19,7 +19,7 @@ public class DeleteDuplicates {
     private static ListNode deleteDuplicates(ListNode head) {
         ListNode cur = head;
         while (cur != null && cur.next != null) {
-            if (cur.val == cur.next.val) {
+            if (cur.value == cur.next.value) {
                 cur.next = cur.next.next;
             } else {
                 cur = cur.next;

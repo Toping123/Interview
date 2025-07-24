@@ -1,6 +1,6 @@
 package list;
 
-import list.base.ListNode;
+import base.ListNode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +31,7 @@ public class IsPalindrome {
         // 将链表的值复制到集合中
         ListNode currentNode = head;
         while (currentNode != null) {
-            list.add(currentNode.val);
+            list.add(currentNode.value);
             currentNode = currentNode.next;
         }
 

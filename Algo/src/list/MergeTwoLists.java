@@ -1,6 +1,6 @@
 package list;
 
-import list.base.ListNode;
+import base.ListNode;
 
 /**
  * 合并两个有序链表
@@ -31,10 +31,10 @@ public class MergeTwoLists {
         if (list1 == null) return list2;
         if (list2 == null) return list1;
 
-        if (list1.val < list2.val) {
-            return new ListNode(list1.val, mergeTwoLists1(list1.next, list2));
+        if (list1.value < list2.value) {
+            return new ListNode(list1.value, mergeTwoLists1(list1.next, list2));
         } else {
-            return new ListNode(list2.val, mergeTwoLists1(list1, list2.next));
+            return new ListNode(list2.value, mergeTwoLists1(list1, list2.next));
         }
     }
 
@@ -50,7 +50,7 @@ public class MergeTwoLists {
         ListNode pointNode = listNode;
 
         while (list1 != null && list2 != null) {
-            if (list1.val < list2.val) {
+            if (list1.value < list2.value) {
                 pointNode.next = list1;
                 list1 = list1.next;
             } else {

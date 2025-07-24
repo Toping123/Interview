@@ -3,7 +3,7 @@ package stack.create
 /**
  * @author LTP  2025/7/23
  */
-interface IStack<T> {
+interface IStack {
     /**
      * 获取栈的大小
      *
@@ -23,26 +23,26 @@ interface IStack<T> {
      *
      * @param t 入栈的元素
      */
-    fun push(t: T)
+    fun push(t: Int)
 
     /**
      * 出栈
      *
      * @return 出栈的元素
      */
-    fun pop(): T?
+    fun pop(): Int?
 
     /**
      * 获取栈顶元素
      *
      * @return 栈顶元素
      */
-    fun peek(): T?
+    fun peek(): Int?
 
     /**
      * 遍历栈
      *
      * @return 栈的数组表示
      */
-    fun toArray(): Array<T>
+    fun toArray(): Array<Int>
 }

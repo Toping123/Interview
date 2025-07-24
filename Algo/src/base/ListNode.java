@@ -1,4 +1,4 @@
-package list.base;
+package base;
 
 /**
  * 链表
@@ -6,18 +6,18 @@ package list.base;
  * @author BTPJ  2020/12/3
  */
 public class ListNode {
-    public int val;
+    public int value;
     public ListNode next;
 
     public ListNode() {
     }
 
-    public ListNode(int val) {
-        this.val = val;
+    public ListNode(int value) {
+        this.value = value;
     }
 
-    public ListNode(int val, ListNode next) {
-        this.val = val;
+    public ListNode(int value, ListNode next) {
+        this.value = value;
         this.next = next;
     }
 
@@ -37,7 +37,7 @@ public class ListNode {
     @Override
     public String toString() {
         return "ListNode{" +
-                "val=" + val +
+                "val=" + value +
                 ", next=" + next +
                 '}';
     }
@@ -69,9 +69,9 @@ public class ListNode {
     public static String listNode2String(ListNode root) {
         ListNode node = root;
         StringBuilder sb = new StringBuilder();
-        sb.append("[").append(root.val).append(",");
+        sb.append("[").append(root.value).append(",");
         while (node.next != null) {
-            sb.append(node.next.val).append(",");
+            sb.append(node.next.value).append(",");
             node = node.next;
         }
         sb.deleteCharAt(sb.length() - 1);

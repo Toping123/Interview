@@ -3,7 +3,7 @@ package list;
 import java.util.HashSet;
 import java.util.Set;
 
-import list.base.ListNode;
+import base.ListNode;
 
 /**
  * 环形链表

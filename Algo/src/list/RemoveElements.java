@@ -1,6 +1,6 @@
 package list;
 
-import list.base.ListNode;
+import base.ListNode;
 
 /**
  * 移除链表元素
@@ -32,7 +32,7 @@ public class RemoveElements {
         if (head == null) return null;
 
         head.next = removeElements1(head.next, val);
-        return head.val == val ? head.next : head;
+        return head.value == val ? head.next : head;
     }
 
     /**
@@ -48,7 +48,7 @@ public class RemoveElements {
         listNode.next = head;
         ListNode pointNode = listNode;
         while (pointNode.next != null) {
-            if (pointNode.next.val == val) {
+            if (pointNode.next.value == val) {
                 pointNode.next = pointNode.next.next;
             } else {
                 pointNode = pointNode.next;
