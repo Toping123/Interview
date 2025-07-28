@@ -1,6 +1,7 @@
 package stack.create
 
 /**
+ * 栈的接口
  * @author LTP  2025/7/23
  */
 interface IStack {
