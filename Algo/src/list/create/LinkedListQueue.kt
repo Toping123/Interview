@@ -16,17 +16,17 @@ class LinkedListQueue : IQueue {
             queue.enqueue(3)
             queue.enqueue(4)
             queue.enqueue(5)
-            println(queue.front())
+            println(queue.peek())
             println(queue.dequeue())
             println(queue.toArray().joinToString())
         }
     }
 
     /** 队列头指针 */
-    private var front: ListNode? = null
+    private var head: ListNode? = null
 
     /** 队列尾指针 */
-    private var rear: ListNode? = null
+    private var tail: ListNode? = null
 
     /** 队列大小 */
     private var queueSize = 0
@@ -43,31 +43,31 @@ class LinkedListQueue : IQueue {
         val newNode = ListNode(t)
         // 如果队列为空，则令头、尾节点都指向该节点
         if (isEmpty()) {
-            front = newNode
-            rear = newNode
+            head = newNode
+            tail = newNode
         } else {
             // 如果队列不为空，则将该节点添加到尾节点后
-            rear?.next = newNode
-            rear = newNode
+            tail?.next = newNode
+            tail = newNode
         }
         queueSize++
     }
 
     override fun dequeue(): Int? {
-        val num = front()
+        val num = peek()
         // 删除头节点
-        front = front?.next
+        head = head?.next
         queueSize--
         return num
     }
 
-    override fun front(): Int? {
-        return front?.value
+    override fun peek(): Int? {
+        return head?.value
     }
 
     override fun toArray(): IntArray {
         val array = IntArray(size())
-        var temp = front
+        var temp = head
         for (i in array.indices) {
             array[i] = temp!!.value
             temp = temp.next

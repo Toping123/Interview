@@ -14,7 +14,7 @@ class ArrayQueue(capacity: Int) : IQueue {
             queue.enqueue(3)
             queue.enqueue(4)
             queue.enqueue(5)
-            println(queue.front())
+            println(queue.peek())
             println(queue.dequeue())
             println(queue.toArray().joinToString())
         }
@@ -24,7 +24,7 @@ class ArrayQueue(capacity: Int) : IQueue {
     private val array = IntArray(capacity)
 
     /** 队列头指针 */
-    private var frontIndex = 0
+    private var headIndex = 0
 
     /** 队列大小 */
     private var queueSize = 0
@@ -44,27 +44,27 @@ class ArrayQueue(capacity: Int) : IQueue {
         }
         // 计算队尾指针，指向队尾索引 + 1
         // 通过取余操作实现 rear 越过数组尾部后回到头部
-        val rearIndex = (frontIndex + queueSize) % array.size
+        val rearIndex = (headIndex + queueSize) % array.size
         array[rearIndex] = t
         queueSize++
     }
 
     override fun dequeue(): Int? {
-        val num = front()
-        frontIndex = (frontIndex + 1) % array.size
+        val num = peek()
+        headIndex = (headIndex + 1) % array.size
         queueSize--
         return num
     }
 
-    override fun front(): Int? {
+    override fun peek(): Int? {
         if (isEmpty()) {
             print("队列为空")
             return null
         }
-        return array[frontIndex]
+        return array[headIndex]
     }
 
     override fun toArray(): IntArray {
-        return array.copyOfRange(frontIndex, frontIndex + queueSize)
+        return array.copyOfRange(headIndex, headIndex + queueSize)
     }
 }

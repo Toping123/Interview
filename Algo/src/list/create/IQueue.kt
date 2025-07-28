@@ -38,7 +38,7 @@ interface IQueue {
      *
      * @return 队头元素
      */
-    fun front(): Int?
+    fun peek(): Int?
 
     /**
      * 遍历栈
