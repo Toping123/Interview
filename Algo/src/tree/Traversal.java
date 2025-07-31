@@ -23,7 +23,7 @@ import java.util.Queue;
 public class Traversal {
 
     public static void main(String[] args) {
-        Integer[] arr = { 3, 9, 20, null, null, 15, 7 };
+        Integer[] arr = {3, 9, 20, null, null, 15, 7};
         TreeNode tree = CreateTreeNode.array2Tree(arr);
 
         StringBuilder sb = new StringBuilder();
@@ -44,6 +44,13 @@ public class Traversal {
         sb.delete(0, sb.length());
         sb.append("后序遍历：");
         postorderList.forEach(it -> sb.append(it).append(","));
+        sb.deleteCharAt(sb.length() - 1);
+        System.out.println(sb);
+
+        List<Integer> levelList = levelOrder(tree);
+        sb.delete(0, sb.length());
+        sb.append("层序遍历：");
+        levelList.forEach(it -> sb.append(it).append(","));
         sb.deleteCharAt(sb.length() - 1);
         System.out.println(sb);
     }
@@ -130,13 +137,13 @@ public class Traversal {
     }
 
     /**
-     * 二叉树的层序遍历，返回一个包含所有节点值的列表，每个子列表代表一层。
-     * 
+     * 二叉树的层序遍历
+     *
      * @param root 二叉树的根节点
      * @return 包含所有节点值的列表，每个子列表代表一层
      */
-    private List<List<Integer>> levelOrder(TreeNode root) {
-        List<List<Integer>> list = new ArrayList<>();
+    private static List<Integer> levelOrder(TreeNode root) {
+        List<Integer> list = new ArrayList<>();
         if (root == null) return list;
 
         // 队列，用于存储待遍历的节点
@@ -145,22 +152,16 @@ public class Traversal {
         queue.offer(root);
         while (!queue.isEmpty()) {
             // 当前层的节点值列表
-            List<Integer> level = new ArrayList<>();
-            int size = queue.size();
-            for (int i = 0; i < size; i++) {
-                TreeNode node = queue.poll();
-                level.add(node.val);
-                if (node.left != null) {
-                    // 如果左子节点不为空，将其加入队列
-                    queue.offer(node.left);
-                }
-                if (node.right != null) {
-                    // 如果右子节点不为空，将其加入队列
-                    queue.offer(node.right);
-                }
-
+            TreeNode node = queue.poll();
+            list.add(node.val);
+            if (node.left != null) {
+                // 如果左子节点不为空，将其加入队列
+                queue.offer(node.left);
             }
-            list.add(level);
+            if (node.right != null) {
+                // 如果右子节点不为空，将其加入队列
+                queue.offer(node.right);
+            }
         }
         return list;
     }
