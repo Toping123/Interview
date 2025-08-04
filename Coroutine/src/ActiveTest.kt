@@ -5,6 +5,7 @@ import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withContext
 
 class ActiveTest {
 
@@ -13,8 +14,13 @@ class ActiveTest {
         fun main(args: Array<String>) {
             runBlocking {
                 val activeTest = ActiveTest()
-                repeat(100) {
+                repeat(1000) {
                     activeTest.startActive()
+                }
+                withContext(Dispatchers.Default) {
+                    repeat(1000) {
+                        activeTest.startActive()
+                    }
                 }
                 activeTest.cancelActive()
 
@@ -26,7 +32,7 @@ class ActiveTest {
     private var activeJob: Job? = null
     private var needExecute = true
 
-    private val scope = CoroutineScope(Dispatchers.IO + SupervisorJob())
+    private val scope = CoroutineScope(Dispatchers.Default + SupervisorJob())
 
     private fun startActive() {
         if (needExecute || activeJob?.isActive == true) {
