@@ -4,6 +4,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withTimeoutOrNull
 
 /**
  * @author LTP  2025/8/4
@@ -17,9 +18,8 @@ class JoinTest {
             runBlocking {
                 val joinTest = JoinTest()
                 val job1 = joinTest.testJob1()
-                delay(5000)
                 println("job1 isActive:${job1}")
-                job1?.join()
+                job1?.join(500)
                 val job2 = joinTest.testJob2()
                 job2?.join()
             }
@@ -33,7 +33,7 @@ class JoinTest {
     private fun testJob1(): Job? {
         job1 = scope.launch {
             println("1111111111")
-            delay(1000)
+            delay(3000)
             println("222222222222")
         }
         return job1
@@ -46,5 +46,19 @@ class JoinTest {
             println("444444444444")
         }
         return job2
+    }
+}
+
+/**
+ * 等待任务完成
+ * @param timeoutMillis 超时时间，单位毫秒
+ */
+suspend fun Job.join(timeoutMillis: Long? = null) {
+    if (timeoutMillis == null) {
+        join()
+    } else {
+        withTimeoutOrNull(timeoutMillis) {
+            join()
+        }
     }
 }
