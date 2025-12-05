@@ -8,7 +8,7 @@ import java.util.Random;
  *
  * @author BTPJ 2021/5/17
  */
-public class Sort {
+public class Sort2 {
     private static final int[] arr = { 12, 13, 4, 7, 2, 21, 8 };
 
     public static void main(String[] args) {
