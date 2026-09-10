@@ -23,7 +23,7 @@ class FlowTest {
 
                 val flow2 = emptyFlow<String>()
                 println(flow2.firstOrNull())
-//                println(flow2.first()) // 抛出异常NoSuchElementException
+                // println(flow2.first()) // 抛出异常NoSuchElementException
             }
         }
     }
